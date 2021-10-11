@@ -5,7 +5,7 @@ A simple commandline app for interacting with bucket in yandex cloud
 # Установка
 
 ```bash
-  $ git clone https://github.com/azatyamanaev/yandex-cloud-photo
+  $ git clone https://github.com/azatyamanaev/yandex-cloud-photo.git
   $ cd cloudphoto
   $ python setup.py install
 ```
