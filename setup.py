@@ -33,7 +33,7 @@ setup (
  author="Azat Yamanaev",
  long_description=README,
  long_description_content_type="text/markdown",
- url='https://github.com/azatyamanaev/cloudphoto',
+ url='https://github.com/azatyamanaev/yandex-cloud-photo',
   dependency_links=dependency_links,
   author_email='iamanaev2001@gmail.com'
 )
