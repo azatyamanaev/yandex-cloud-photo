@@ -1,38 +1,51 @@
 # CVER
 
-A simple commandline app for searching and looking up opensource vulnerabilities
+A simple commandline app for interacting with bucket in yandex cloud
 
 # Установка
 
-## Через Pip
-
 ```bash
-  $ pip install cver
-```
-
-## Вручную
-
-```bash
-  $ git clone https://github.com/citguru/cevr
-  $ cd cver
+  $ git clone https://github.com/azatyamanaev/yandex-cloud-photo
+  $ cd cloudphoto
   $ python setup.py install
 ```
+После скачивания репозитория необходимо заполнить файлы config и credentials своими данными
+
 # Использование
 
 ```bash
-$ cver
+$ cloudphoto
 ```
 
-## Поиск
-`search <keyword>`
+## Просмотр списка альбомов
+`list`
 
 ```bash
-$ cver search python
+$ cloudphoto list
 ```
-## Просмотр
 
-`search <name>`
+## Просмотр списка фотографий в альбоме
+`list -a <album>`
 
 ```bash
-$ cver look-up CVE-2020-2121
+$ cloudphoto list -a <album>
 ```
+
+
+## Загрузить фотографии в облако
+
+`upload -p <path> -a <album>`
+
+```bash
+$ cloudphoto upload -p <path> -a <album>
+```
+
+
+## Скачать фотографии из облака
+
+`download -p <path> -a <album>`
+
+```bash
+$ cloudphoto download -p <path> -a <album>
+```
+
