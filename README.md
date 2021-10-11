@@ -9,7 +9,7 @@ A simple commandline app for interacting with bucket in yandex cloud
   $ cd yandex-cloud-photo
   $ python setup.py install
 ```
-После скачивания репозитория необходимо заполнить файлы config и credentials в папке cloudphoto/aws_cfg своими данными
+Перед выполнением команды python setup.py install необходимо заполнить файлы config и credentials в папке cloudphoto/aws_cfg своими данными, где файл credentials содержит данные о статическом ключе доступа сервисного аккаунта на yandex cloud, а файл config содержит данные о регионе и название бакета, с которым будет работать приложение
 
 # Использование
 
