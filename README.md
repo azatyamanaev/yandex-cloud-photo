@@ -9,7 +9,7 @@ A simple commandline app for interacting with bucket in yandex cloud
   $ cd cloudphoto
   $ python setup.py install
 ```
-После скачивания репозитория необходимо заполнить файлы config и credentials своими данными
+После скачивания репозитория необходимо заполнить файлы config и credentials в папке cloudphoto/aws_cfg своими данными
 
 # Использование
 
