@@ -1,4 +1,4 @@
-# CVER
+# Cloudphoto
 
 A simple commandline app for interacting with bucket in yandex cloud
 
@@ -28,7 +28,7 @@ $ cloudphoto list
 `list -a <album>`
 
 ```bash
-$ cloudphoto list -a <album>
+$ cloudphoto list -a album
 ```
 
 
@@ -37,7 +37,7 @@ $ cloudphoto list -a <album>
 `upload -p <path> -a <album>`
 
 ```bash
-$ cloudphoto upload -p <path> -a <album>
+$ cloudphoto upload -p path -a album
 ```
 
 
@@ -46,6 +46,6 @@ $ cloudphoto upload -p <path> -a <album>
 `download -p <path> -a <album>`
 
 ```bash
-$ cloudphoto download -p <path> -a <album>
+$ cloudphoto download -p path -a album
 ```
 
