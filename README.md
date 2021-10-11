@@ -1,6 +1,6 @@
 # Cloudphoto
 
-A simple commandline app for interacting with bucket in yandex cloud
+Приложение для загрузки фотографий в один из бакетов Yandex Cloud 
 
 # Установка
 
