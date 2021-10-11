@@ -1,0 +1,2 @@
+include cloudphoto/aws_cfg/config
+include cloudphoto/aws_cfg/credentials

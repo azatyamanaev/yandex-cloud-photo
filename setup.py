@@ -23,6 +23,7 @@ setup (
  description = 'A simple commandline app for interacting with bucket in yandex cloud',
  version = '1.0.0',
  packages = find_packages(), # list of all packages
+ include_package_data=True,
  install_requires = install_requires,
  python_requires='>=3.6', # any python greater than 3.6
  entry_points='''
