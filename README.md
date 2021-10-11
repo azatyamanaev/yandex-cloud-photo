@@ -6,7 +6,7 @@ A simple commandline app for interacting with bucket in yandex cloud
 
 ```bash
   $ git clone https://github.com/azatyamanaev/yandex-cloud-photo.git
-  $ cd cloudphoto
+  $ cd yandex-cloud-photo
   $ python setup.py install
 ```
 После скачивания репозитория необходимо заполнить файлы config и credentials в папке cloudphoto/aws_cfg своими данными
