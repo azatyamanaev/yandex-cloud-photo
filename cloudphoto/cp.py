@@ -21,7 +21,9 @@ def upload_files(path,album):
     try:
         for f in os.scandir(path):
             if f.is_file() and (f.path.split('.')[-1].lower() == 'jpg' or f.path.split('.')[-1].lower() == 'jpeg'):
-                fname = f.path.split('/')[-1].split('.')[-2]
+                fname = f.path.split('/')[-1]
+                index = fname.rfind('.')
+                fname = fname[:index]
                 with open(f.path, 'rb') as pic:
                     bucket.upload_fileobj(pic,'{}/{}{}'.format(album,fname,'.group-photo'))
     except FileNotFoundError:
