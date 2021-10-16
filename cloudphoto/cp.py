@@ -9,14 +9,6 @@ def objs_len(objs):
             len += 1
         return len
     
-def objs_filter(prefix):
-    objs = bucket.objects.filter(Prefix=prefix)
-    ar = []
-    for o in objs:
-        if o.key.split('/')[0] == prefix:
-            ar.append(o)
-    return ar
-    
 def upload_files(path,album):
     if '/' in album:
         print("cloudphoto: Wrong album name format - album name must not contain /")
@@ -33,9 +25,9 @@ def upload_files(path,album):
         print("cloudphoto: cannot upload from {}: No such file or directory".format(path))
     
 def download_files(path,album):
-    ar_objs = objs_filter(album)
+    ar_objs = bucket.objects.filter(Prefix='{}/'.format(album))
     if len(ar_objs) == 0:
-        print("cloudphoto: cannot download to {}: Album {} does not exist".format(path,album))
+        print("cloudphoto: cannot download to {}: Album {} is empty or does not exist".format(path,album))
         return
     
     try:
@@ -64,10 +56,10 @@ def list_albums():
         print(dir)
         
 def list_pics_album(album):
-    ar_objs = objs_filter(album)
+    ar_objs = bucket.objects.filter(Prefix='{}/'.format(album))
     
     if len(ar_objs) == 0:
-        print("cloudphoto: Album {} does not exist".format(album))
+        print("cloudphoto: Album {} is empty or does not exist".format(album))
         return
     
     for o in ar_objs:
