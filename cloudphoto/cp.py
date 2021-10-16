@@ -54,7 +54,7 @@ def list_albums():
 
     folders = set()
     for o in objs:
-        if o.size > 0 and '/' in o.key:
+        if o.size > 0 and o.key.count('/') == 1:
             folders.add(o.key[:o.key.rfind('/')])
     
     for dir in sorted(folders):
