@@ -35,10 +35,12 @@ def download_files(path,album):
     
     try:
         for o in ar_objs:
-            f = open('{}/{}'.format(path,o.key.split('/')[-1]), 'wb')
-            binary = o.get()['Body'].read()
-            f.write(binary)
-            f.close()
+            name = o.key.split('/')[-1]
+            if name.rfind('.group-photo') != -1:
+                f = open('{}/{}'.format(path,name), 'wb')
+                binary = o.get()['Body'].read()
+                f.write(binary)
+                f.close()
     except FileNotFoundError:
         print("cloudphoto: cannot download to {}: No such file or directory".format(path))
     
