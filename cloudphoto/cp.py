@@ -27,7 +27,7 @@ def upload_files(path,album):
 def download_files(path,album):
     objs = bucket.objects.filter(Prefix='{}/'.format(album))
     if objs_len(objs) == 0:
-        print("cloudphoto: cannot download to {}: Album {} is empty or does not exist".format(path,album))
+        print("cloudphoto: cannot download to {}: Album {} does not exist".format(path,album))
         return
     
     try:
@@ -59,7 +59,7 @@ def list_pics_album(album):
     objs = bucket.objects.filter(Prefix='{}/'.format(album))
     
     if objs_len(objs) == 0:
-        print("cloudphoto: Album {} is empty or does not exist".format(album))
+        print("cloudphoto: Album {} does not exist".format(album))
         return
     
     for o in objs:
