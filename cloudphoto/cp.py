@@ -25,13 +25,13 @@ def upload_files(path,album):
         print("cloudphoto: cannot upload from {}: No such file or directory".format(path))
     
 def download_files(path,album):
-    ar_objs = bucket.objects.filter(Prefix='{}/'.format(album))
-    if len(ar_objs) == 0:
+    objs = bucket.objects.filter(Prefix='{}/'.format(album))
+    if objs_len(objs) == 0:
         print("cloudphoto: cannot download to {}: Album {} is empty or does not exist".format(path,album))
         return
     
     try:
-        for o in ar_objs:
+        for o in objs:
             name = o.key.split('/')[-1]
             if name.rfind('.group-photo') != -1:
                 f = open('{}/{}'.format(path,name), 'wb')
@@ -56,13 +56,13 @@ def list_albums():
         print(dir)
         
 def list_pics_album(album):
-    ar_objs = bucket.objects.filter(Prefix='{}/'.format(album))
+    objs = bucket.objects.filter(Prefix='{}/'.format(album))
     
-    if len(ar_objs) == 0:
+    if objs_len(objs) == 0:
         print("cloudphoto: Album {} is empty or does not exist".format(album))
         return
     
-    for o in ar_objs:
+    for o in objs:
         print(o.key.split('/')[-1])
         
 
