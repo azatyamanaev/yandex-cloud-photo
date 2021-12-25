@@ -9,31 +9,34 @@ def objs_len(objs):
             len += 1
         return len
     
+def objs_filter(prefix):
+    objs = bucket.objects.filter(Prefix=prefix)
+    ar = []
+    for o in objs:
+        if o.key.split('/')[0] == prefix:
+            ar.append(o)
+    return ar
+    
 def upload_files(path,album):
-    if '/' in album:
-        print("cloudphoto: Wrong album name format - album name must not contain /")
-        return
     try:
         for f in os.scandir(path):
             if f.is_file() and (f.path.split('.')[-1].lower() == 'jpg' or f.path.split('.')[-1].lower() == 'jpeg'):
-                fname = f.path.split('/')[-1]
-                index = fname.rfind('.')
-                fname = fname[:index]
+                fname = f.path.split('/')[-1].split('.')[-2]
                 with open(f.path, 'rb') as pic:
-                    bucket.upload_fileobj(pic,'{}/{}{}'.format(album,fname,'.group-photo'))
+                    bucket.upload_fileobj(pic,'{}/{}{}{}'.format(album,fname,'_group-photo','.jpg'))
     except FileNotFoundError:
         print("cloudphoto: cannot upload from {}: No such file or directory".format(path))
     
 def download_files(path,album):
-    objs = bucket.objects.filter(Prefix='{}/'.format(album))
-    if objs_len(objs) == 0:
+    ar_objs = objs_filter(album)
+    if len(ar_objs) == 0:
         print("cloudphoto: cannot download to {}: Album {} does not exist".format(path,album))
         return
     
     try:
-        for o in objs:
+        for o in ar_objs:
             name = o.key.split('/')[-1]
-            if name.rfind('.group-photo') != -1:
+            if name.rfind('_group-photo.jpg') != -1:
                 f = open('{}/{}'.format(path,name), 'wb')
                 binary = o.get()['Body'].read()
                 f.write(binary)
@@ -49,20 +52,20 @@ def list_albums():
 
     folders = set()
     for o in objs:
-        if o.size > 0 and o.key.count('/') == 1:
+        if o.size > 0 and '/' in o.key:
             folders.add(o.key[:o.key.rfind('/')])
     
     for dir in sorted(folders):
         print(dir)
         
 def list_pics_album(album):
-    objs = bucket.objects.filter(Prefix='{}/'.format(album))
+    ar_objs = objs_filter(album)
     
-    if objs_len(objs) == 0:
+    if len(ar_objs) == 0:
         print("cloudphoto: Album {} does not exist".format(album))
         return
     
-    for o in objs:
+    for o in ar_objs:
         print(o.key.split('/')[-1])
         
 
@@ -89,4 +92,3 @@ s3resource = session.resource(
 )
 
 bucket = s3resource.Bucket(bucket_name)
-
