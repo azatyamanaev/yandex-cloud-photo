@@ -18,6 +18,9 @@ def objs_filter(prefix):
     return ar
     
 def upload_files(path,album):
+    if '/' in album:
+        print("cloudphoto: Wrong album name format - album name must not contain /")
+        return
     try:
         for f in os.scandir(path):
             if f.is_file() and (f.path.split('.')[-1].lower() == 'jpg' or f.path.split('.')[-1].lower() == 'jpeg'):
